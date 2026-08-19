@@ -153,17 +153,63 @@ body {
 .torch-btn {
   display: none;
   position: absolute;
-  top: var(--spacing-lg);
-  right: var(--spacing-lg);
+  top: 15%;
+  right: 0;
   z-index: 10;
   background: none;
-  border: var(--border-width-thin) solid var(--color-text-primary);
-  border-radius: var(--border-radius-round);
-  padding: 10px;
-  font-size: var(--font-size-btn);
+  border: none;
+  width: 60px;
+  height: 120px;
   cursor: pointer;
-  color: var(--color-text-primary);
-  transition: var(--transition-fast);
+}
+
+.torch-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  position: relative;
+  z-index: 2;
+}
+
+.torch-fire {
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.torch-holder {
+  animation: holderPulse 2s infinite alternate;
+}
+
+@keyframes holderPulse {
+  0% { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2)); }
+  100% { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)); }
+}
+
+.torch-btn.lit-up .torch-fire {
+  opacity: 1;
+  animation: fireFlicker 0.15s infinite alternate;
+}
+
+.torch-btn.lit-up .torch-holder {
+  animation: none;
+}
+
+.torch-btn.lit-up::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle at 60% 40%, rgba(255, 120, 0, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes fireFlicker {
+  0% { transform: scale(0.95); transform-origin: 30px 50px; opacity: 0.8; }
+  100% { transform: scale(1.05); transform-origin: 30px 50px; opacity: 1; }
 }
 
 /* ==== ANIMATED ARROWS ==== */

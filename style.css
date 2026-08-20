@@ -259,6 +259,49 @@ body {
   }
 }
 
+#flame-cursor, #flame-lighting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -90%);
+  will-change: transform;
+}
+
+#flame-lighting {
+  z-index: 10;
+}
+
+#flame-cursor svg, #flame-lighting svg {
+  overflow: visible;
+}
+
+.flame-layer, #lighting-group {
+  transform-origin: 50% 90%;
+}
+
+#mask-image {
+  mask: url(#dynamic-mask);
+  -webkit-mask: url(#dynamic-mask);
+}
+
+.pulsing-flame {
+  transform-origin: 0px 0px; 
+  animation: pulseLight 1s ease-in-out infinite;
+}
+
+@keyframes pulseLight {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08); 
+  }
+}
+
 /* ==== TABLET ==== */
 @media (max-width: 1024px) and (min-width: 769px) {
   .content-wrapper {
